@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Age Calculator</h2>
+        <label for="dob">Enter your Date of Birth:</label>
+        <input type="date" id="dob">
+        <button onclick="calculateAge()">Calculate Age</button>
+        <p id="result"></p>
+        <p><a href="Contact Us">Contact Us</a> to deploy more projects...</p>
+    </div>
+    <script>
+        function calculateAge() {
+            let dob = document.getElementById("dob").value;
+            if (!dob) {
+                document.getElementById("result").innerText = "Please select a valid date.";
+                return;
+            }
+            let dobDate = new Date(dob);
+            let today = new Date();
+            let years = today.getFullYear() - dobDate.getFullYear();
+            let months = today.getMonth() - dobDate.getMonth();
+            let days = today.getDate() - dobDate.getDate();
+            if (days < 0) {
+                months--;
+                days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+            }
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            document.getElementById("result").innerText = `Your age is: ${years} years, ${months} months, and ${days} days.`;
+        }
+    </script>
+</body>
+</html>
